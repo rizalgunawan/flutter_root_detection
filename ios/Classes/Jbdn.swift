@@ -27,32 +27,32 @@ class Jbdn: NSObject {
         }
         
         if let file = fopen("/Applications/IntelliScreen.app", "r") {
-            flcose(file)
+            fclose(file)
             return true
         }
 
         if let file = fopen("/Applications/MxTube.app", "r") {
-            flcose(file)
+            fclose(file)
             return true
         }
 
         if let file = fopen("/Applications/RockApp.app", "r") {
-            flcose(file)
+            fclose(file)
             return true
         }
 
         if let file = fopen("/Applications/SBSettings.app", "r") {
-            flcose(file)
+            fclose(file)
             return true
         }
 
         if let file = fopen("/Applications/WinterBoard.app", "r") {
-            flcose(file)
+            fclose(file)
             return true
         }
 
         if let file = fopen("/Applications/blackra1n.app", "r") {
-            flcose(file)
+            fclose(file)
             return true
         }
 
