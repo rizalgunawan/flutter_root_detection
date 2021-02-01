@@ -14,9 +14,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool rooted, developerMode;
+  bool rooted, developerMode, isOnEmulator, amIReverseEngineered;
 
-  bool get checking => rooted == null && developerMode == null;
+  bool get checking =>
+      rooted == null &&
+      developerMode == null &&
+      isOnEmulator == null &&
+      amIReverseEngineered == null;
 
   @override
   void initState() {
@@ -26,16 +30,23 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    bool rooted = true, developerMode = true;
+    bool rooted = true,
+        developerMode = true,
+        isOnEmulator = true,
+        amIReverseEngineered = true;
 
     try {
       rooted = await flutterRootDetection.rooted;
       developerMode = await flutterRootDetection.developerMode;
+      isOnEmulator = await flutterRootDetection.onEmulator;
+      amIReverseEngineered = await flutterRootDetection.amIReverseEngineered;
 
       if (mounted) {
         setState(() {
           this.rooted = rooted;
           this.developerMode = developerMode;
+          this.isOnEmulator = isOnEmulator;
+          this.amIReverseEngineered = amIReverseEngineered;
         });
       }
     } on PlatformException catch (e) {
@@ -54,7 +65,9 @@ class _MyAppState extends State<MyApp> {
           child: checking
               ? CircularProgressIndicator()
               : Text('Rooted = ${rooted ? 'YES' : 'NO'}\n'
-                  'Dev Mode = ${developerMode ? 'YES' : 'NO'}'),
+                  'Dev Mode = ${developerMode ? 'YES' : 'NO'}\n'
+                  'Emulator = ${isOnEmulator ? 'YES' : 'NO'}\n'
+                  'Reverse Engineered = ${amIReverseEngineered ? 'YES' : 'NO'}'),
         ),
       ),
     );

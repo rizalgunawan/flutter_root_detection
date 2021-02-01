@@ -16,7 +16,9 @@ A Flutter plugin for detecting root on Android and jailbreak on iOS.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'DTTJailbreakDetection'
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '10.0'
+  s.ios.frameworks = 'UIKit', 'Foundation'
+
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

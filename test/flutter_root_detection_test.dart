@@ -24,6 +24,14 @@ void main() {
     expect(await flutterRootDetection.rooted, true);
   });
 
+  test('amIJailbrokenWithFailedChecks', () async {
+    expect(await flutterRootDetection.amIJailbrokenWithFailedChecks, true);
+  });
+
+  test('onEmulator', () async {
+    expect(await flutterRootDetection.onEmulator, true);
+  });
+
   test('developerMode', () async {
     expect(await flutterRootDetection.developerMode, false);
   });

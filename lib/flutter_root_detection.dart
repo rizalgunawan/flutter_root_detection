@@ -16,7 +16,18 @@ class FlutterRootDetection {
     final rooted = await _channel.invokeMethod('rooted');
     bool isRooted = rooted == true || rooted == 1;
 
-    if (throwWhenRooted == true && !isRooted) {
+    if (throwWhenRooted == true && isRooted) {
+      throw FlutterRootDetectionException();
+    }
+
+    return isRooted;
+  }
+
+  Future<bool> get amIJailbrokenWithFailedChecks async {
+    final rooted = await _channel.invokeMethod('amIJailbrokenWithFailedChecks');
+    bool isRooted = rooted == true || rooted == 1;
+
+    if (throwWhenRooted == true && isRooted) {
       throw FlutterRootDetectionException();
     }
 
@@ -26,6 +37,23 @@ class FlutterRootDetection {
   Future<bool> get developerMode async {
     final inDevMode = await _channel.invokeMethod('developerMode');
     return inDevMode == true || inDevMode == 1;
+  }
+
+  Future<bool> get onEmulator async {
+    final isOnEmulator = await _channel.invokeMethod('onEmulator');
+    return isOnEmulator == true || isOnEmulator == 1;
+  }
+
+  Future<bool> get amIReverseEngineered async {
+    final amIReverseEngineered =
+        await _channel.invokeMethod('amIReverseEngineered');
+    bool isReverse = amIReverseEngineered == true || amIReverseEngineered == 1;
+
+    if (throwWhenRooted == true && isReverse) {
+      throw FlutterRootDetectionException();
+    }
+
+    return isReverse;
   }
 }
 
